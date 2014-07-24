@@ -77,7 +77,7 @@ void Delete(Node **head,int n)
     {
         if( n == (curr)->data)
         {
-
+		//Code to be added here
         }
 
     }
