@@ -87,20 +87,18 @@ void print_dup(Node *head)
                 temp = temp->dup;
             }
             printf("NULL");
+            printf("\n");
         }
         iter = iter->next;
-        printf("\n");
+
     }
+    printf("%d->NULL",iter->data);
 }
 
-void delete(Node **head,int t)
+void delete_dup(Node **head,int t)
 {
-    Node *iter = *head;
-    if(iter == NULL)
-    {
-        return;
-    }
-    if(iter->next != NULL)
+    Node *iter = (*head);
+    if(iter->next == NULL)
     {
         if(iter->data == t)
         {
@@ -108,40 +106,41 @@ void delete(Node **head,int t)
             (*head) = NULL;
             return;
         }
+        else{return;}
     }
     while(iter->next != NULL)
     {
         if(iter->next->data == t)
         {
-            Node *temp = iter->next;
-            Node *curr = *head;
-            while(curr != iter->next)
-            {
-                if(curr->dup = iter->next)
-                {
-                    break;
-                }
-                curr = curr->next;
-            }
-            curr->dup = iter->dup;
-            free(iter->next);
-            iter->next = iter->next;
-            return;
+             Node *temp = iter->next;
+             iter->next = temp->next;
+             Node *dup = temp->dup;
+             while(dup != NULL)
+             {
+                 Node *iter2 = iter;
+                 while(iter2->next != dup)
+                 {
+                     iter2 = iter2->next;
+                 }
+                 free
+             }
+             free(temp);
         }
+        iter = iter->next;
     }
+    return;
 
 }
 int main()
 {
     Node *head = NULL;
-    insert(&head,1);
-    insert(&head,1);
-    insert(&head,2);
-    insert(&head,3);
-    insert(&head,4);
-    insert(&head,5);
-    insert(&head,1);
-    delete(&head,1);
+    int i=0;
+    for(i=0;i<10;i++)
+    {
+        insert(&head,i);
+        insert(&head,10-i);
+    }
+    delete_dup(&head,1);
     print_dup(head);
 
 }
