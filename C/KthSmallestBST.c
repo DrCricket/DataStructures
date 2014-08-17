@@ -56,11 +56,11 @@ main()
 	printf("\n");
 	//postorder(t);
 	printf("%dth smallest element: ",5);
-	KthSmallest(t,5);
+	//KthSmallest(t,5);
 
 	printf("\n");
-	printf("Successor to %d",3);
-	successor(t,3);
+	printf("Successor to %d is ",7);
+	successor(t,7);
 
 	return;
 }
@@ -195,7 +195,7 @@ void successor(Tree *sr,int t)
     KthSmallest(sr,pos+1);
 }
 
-void KthSmallestHelper(Tree *sr,int key,int *pos)
+void KthSmallestHelper(Tree *sr,int key,int *pos) // Get position of element - Kth order
 {
     static int count =0;
     if(sr != NULL)
@@ -205,5 +205,4 @@ void KthSmallestHelper(Tree *sr,int key,int *pos)
         if(key == sr->val){*pos = *(&count);}
         KthSmallestHelper(sr->right,key,pos);
     }
-
 }
