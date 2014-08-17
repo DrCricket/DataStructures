@@ -19,6 +19,7 @@ main()
 	void inorder(Tree *t);
 	void preorder(Tree *sr);
 	void postorder(Tree *sr);
+	void KthSmallest(Tree *sr,int k);
 
 	int arr[10]= {1,2,3,5,6,4,7,9,8,0};
 
@@ -45,9 +46,11 @@ main()
 	delete(t,0);
 	inorder(t);
 	printf("\n");
-	preorder(t);
+	//preorder(t);
 	printf("\n");
-	postorder(t);
+	//postorder(t);
+	printf("%dth smallest neighbour: ",5);
+	KthSmallest(t,5);
 	return;
 }
 
@@ -120,6 +123,7 @@ Tree *findLargest(Tree *t)
 	}
 	return p;
 }
+/*********************************** TRAVERSALS BEGIN **************************/
 
 void inorder(Tree *sr )
 {
@@ -154,3 +158,23 @@ void postorder(Tree *sr)
     return;
 }
 /********************** END OF TRAVERSALS ************************/
+
+
+/************************** Kth Smallest Neighbor ****************/
+
+void KthSmallest(Tree *sr,int k)
+{
+    static int count =0;
+    if(sr != NULL)
+    {
+        KthSmallest(sr->left,k);
+        count++;
+        if(k == count){printf("%d",sr->val);}
+        KthSmallest(sr->right,k);
+    }
+}
+
+
+/********************** Inorder Succesor *********************/
+
+
