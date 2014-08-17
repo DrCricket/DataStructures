@@ -8,6 +8,9 @@ typedef struct Tree
 	struct Tree *right;
 }Tree;
 
+
+void KthSmallestHelper(Tree *sr,int key,int *pos);
+
 Tree* findLargest(Tree *t);
 main()
 {
@@ -19,7 +22,10 @@ main()
 	void inorder(Tree *t);
 	void preorder(Tree *sr);
 	void postorder(Tree *sr);
+	void successor(Tree *sr,int t);
 	void KthSmallest(Tree *sr,int k);
+
+
 
 	int arr[10]= {1,2,3,5,6,4,7,9,8,0};
 
@@ -49,8 +55,13 @@ main()
 	//preorder(t);
 	printf("\n");
 	//postorder(t);
-	printf("%dth smallest neighbour: ",5);
+	printf("%dth smallest element: ",5);
 	KthSmallest(t,5);
+
+	printf("\n");
+	printf("Successor to %d",3);
+	successor(t,3);
+
 	return;
 }
 
@@ -160,7 +171,7 @@ void postorder(Tree *sr)
 /********************** END OF TRAVERSALS ************************/
 
 
-/************************** Kth Smallest Neighbor ****************/
+/************************** Kth Smallest Element ****************/
 
 void KthSmallest(Tree *sr,int k)
 {
@@ -175,6 +186,24 @@ void KthSmallest(Tree *sr,int k)
 }
 
 
-/********************** Inorder Succesor *********************/
+/********************** Inorder Successor *********************/
 
+void successor(Tree *sr,int t)
+{
+    int pos;
+    KthSmallestHelper(sr,t,&pos);
+    KthSmallest(sr,pos+1);
+}
 
+void KthSmallestHelper(Tree *sr,int key,int *pos)
+{
+    static int count =0;
+    if(sr != NULL)
+    {
+        KthSmallestHelper(sr->left,key,pos);
+        count++;
+        if(key == sr->val){*pos = *(&count);}
+        KthSmallestHelper(sr->right,key,pos);
+    }
+
+}
