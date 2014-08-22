@@ -43,6 +43,10 @@ void inorder(Node *head)
 
 void levelOrder(Node *head)
 {
+    if(head == NULL)
+    {
+        return;
+    }
     queue<Node *> s;
     s.push(head);
     while(!s.empty())
