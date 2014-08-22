@@ -206,3 +206,13 @@ void KthSmallestHelper(Tree *sr,int key,int *pos) // Get position of element - K
         KthSmallestHelper(sr->right,key,pos);
     }
 }
+
+/***************** Level Order Traversal *****************************/
+
+void LOrderTraversal(Node *head)
+{
+    Node *curr = head;
+
+}
+
+
