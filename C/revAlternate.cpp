@@ -44,6 +44,8 @@ void insert(Tree **t,int n)
 	*t = l;
 	return;
 }
+void inorder(Tree *head,stack<int> *s,int l);
+void revInsert(Tree *head,stack<int> *s,int l);
 /**************************** Inorder Traversal *****************************************/
 
 void inord(Tree *head)
@@ -53,9 +55,9 @@ void inord(Tree *head)
     cout << head->val << " " << endl;
     inord(head->right);
 }
+
 /*********************** Reverse alternate levels of a binary tree ******************/
-void inorder(Tree *head,stack<int> *s,int l);
-void revInsert(Tree *head,stack<int> *s,int l);
+
 
 void revAlt(Tree *head)
 {
