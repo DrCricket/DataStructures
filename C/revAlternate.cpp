@@ -2,6 +2,7 @@
 #include<iostream>
 #include<cstdlib>
 #include<algorithm>
+#include<stack>
 #include<cmath>
 
 using namespace std;
@@ -43,11 +44,51 @@ void insert(Tree **t,int n)
 	*t = l;
 	return;
 }
+/**************************** Inorder Traversal *****************************************/
+
+void inord(Tree *head)
+{
+    if(head = NULL){return;}
+    inord(head->left);
+    cout << head->val << " " << endl;
+    inord(head->right);
+}
 /*********************** Reverse alternate levels of a binary tree ******************/
+void inorder(Tree *head,stack<int> *s,int l);
+void revInsert(Tree *head,stack<int> *s,int l);
 
+void revAlt(Tree *head)
+{
+    stack<int> s;
+    inorder(head,&s,0);
+    revInsert(head,&s,0);
+}
 
+void inorder(Tree *head,stack<int> *s,int l) // Collect all odd level order values
+{
+    if(head == NULL)
+    {return ;}
 
+    inorder(head->left,s,l+1);
+    if(l%2 != 0)
+    {
+        (*s).push(head->val);
+    }
+    inorder(head->right,s,l+1);
+}
 
+void revInsert(Tree *head,stack<int> *s,int l)
+{
+    if(head == NULL)
+    {return;}
+    revInsert(head->left,s,l+1);
+    if(l%2 != 0)
+    {
+        head->val = (*s).top();
+        (*s).pop();
+    }
+    revInsert(head->right,s,l+1);
+}
 
 
 int main()
@@ -69,8 +110,10 @@ int main()
     insert(&head,14);
     insert(&head,16);
     insert(&head,20);
-    int a = 17, b = 6;
-    printf(" %d and %d cousins: %d\n",a,b,cousins(head,a,b));
+    inord(head);
+    cout << endl;
+    revAlt(head);
+    inord(head);
     return 0;
 }
 
