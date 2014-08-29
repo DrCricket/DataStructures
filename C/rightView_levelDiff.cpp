@@ -68,6 +68,16 @@ void printRecur(Tree *head,int maxlevel,int *level)
     printRecur(head->left,maxlevel+1,level);
 }
 
+/***************************** Difference alternate levels ************************/
+
+int diff(Tree *head)
+{
+    if(head == NULL)
+    {
+        return 0;
+    }
+    else{return (head->val - diff(head->left)- diff(head->right));}
+}
 int main()
 {
     Tree* head = NULL;
@@ -79,6 +89,7 @@ int main()
     insert(&head,6);
     insert(&head,9);
     insert(&head,11);
-    printRight(head);
+    cout << diff(head) << endl;
+    //printRight(head);
 }
 
